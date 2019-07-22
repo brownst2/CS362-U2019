@@ -655,17 +655,17 @@ j = state->hand[currentPlayer][choice1];  //store card we will trash
           return -1;
         }
 
-      else //(choice2 > treasure_map || choice2 < curse)
-       // {
+      if(choice2 > treasure_map || choice2 < curse)
+        {
           return -1;
-        //}
+        }
 
       if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
         {
           return -1;
         }
 
-      gainCard(choice2, state, 20, currentPlayer);
+      gainCard(choice2, state, 2, currentPlayer);
 
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
@@ -940,7 +940,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
-  int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
   int drawntreasure=0;
   int cardDrawn;
